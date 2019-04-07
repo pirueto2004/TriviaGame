@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Contextual CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- <link rel="stylesheet" href="assets/css/reset.css" /> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Javascript file -->
+    <script type="text/javascript" src="assets/javascript/app.js" ></script>
+    
+
+    <title>Trivia Game</title>
+  </head>
+  <body >
+
+    <div class="container mt-3 p-2" id="boxshadow">
+      <div class="row showCase">
+          <div class="col-12 contentHolder">
+              <h1 class="elegantshadow my-2">Totally Trivial Trivia</h1>
+              <div class="row justify-content-center">
+                  <div class="col-6">
+                      <div class="alert alert-light " id="time">
+                        <h4>Time remaining: <span class="badge badge-danger ml-2" id="timeRemaining"></span></h4>
+                      </div>      
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-12">
+                    <div class="card card-info">
+                      <h4 class="card-header">Question <span id="qNum"></span> </h4>
+                      <h2 class="card-title py-3" id="question"></h2>
+                    </div>
+                  </div>
+              </div>
+              <div class="row justify-content-center">
+                  <div class="col-4" id="answer">
+                    <div class="form-group">
+                      <label for="options">Options...</label>
+                      <select size="4" class="form-control" id="options">
+                        <option id="0" value="1">Answer 1</option>
+                        <option id="1" value="2">Answer 2</option>
+                        <option id="2" value="3">Answer 3</option>
+                        <option id="3" value="4">Answer 4</option>
+                      </select>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>  
+    </div>
+
+    
+    
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
