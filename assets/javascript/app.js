@@ -70,7 +70,6 @@ const myQuestions = [
 
 
 
-
 function setBackgroundImage(myObject, imageUrl) {
    myObject.css({
                 "background-image": "url(" + imageUrl + ")",
@@ -79,21 +78,21 @@ function setBackgroundImage(myObject, imageUrl) {
 }
 
 
-function startTimer(duration, display) {
-    var timer = duration;
-    setInterval(function () {
-        seconds = parseInt(timer % 60, 10);
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+function setTimer(duration, display) {
+    var counter = duration;
+    var timerId = setInterval(function(){
+        seconds = parseInt(counter % 60, 10);
+        // seconds = seconds < 10 ? "0" + seconds : seconds;
+        seconds = seconds < 10 ? + seconds : seconds;
         display.text(' ' + seconds + ' Seconds');
-        timer--;
-        if (timer < 0) {
-            timer = duration;
+        counter--;
+        if (counter < 0) {
+            counter = duration;
             // $("#messages").html('<div class="alert alert-info"><h4>Your Time is Up!</h4></div>');
-
+            clearInterval(timerId);
             $("#image").html('<div><img class="img-fluid" src="assets/images/time-is-up.gif" ></div>');
             showAnswer();
             showButtons();
-            
         }
     }, 1000);
 }
@@ -117,38 +116,69 @@ function selectOptions() {
     $('#options').change(function() {
         var selectedOption = $(this).val();
         if (selectedOption === answer) {
+            isAnswered = true;
             correctAnswers++;
             $("#messages").html('<div class="alert alert-info"><h4>You Got It Right! Congrats!</h4></div>');
+            
+           
         }
-        else {
+        else if (selectedOption !== answer){
+            isAnswered = true;
             incorrectAnswers++;
             $("#messages").html('<div class="alert alert-danger"><h4>You Got It Wrong!</h4></div>');
-            showAnswer();
+            showAnswer(); 
+            
+            
             
         }
+        else {
+            isAnswered = false;
+            unanswered++;
+            // timeLeft = 0;
+            $("#image").html('<div><img class="img-fluid" src="assets/images/time-is-up.gif" ></div>');
+            // setTimer(timeLeft, display);
+            
+            
+            
+        }
+        
     });
 }
 
 function showAnswer() {
-    $("#answer").html('<h4 class="alert alert-info border border-">Correct Answer: ' + correctAnswer+ '</h4>');
+    var ans = '<span class="h3 ml-3">' + correctAnswer + '</span>';
+    $("#answer").html('<h6 class="alert alert-info border border-info">Correct Answer: ' + ans + '</h6>');
 }
 
 function showButtons() {
     //Give options to Play Again or Reset game  
     $('#playAgain').html('<button type="button" class="btn btn-warning btn-sm">' + ' CONTINUE ' + '</button>');
     $('#resetGame').html('<button type="button" class="btn btn-danger btn-sm">' + ' EXIT GAME ' + '</button>');
-    $('#playAgain').click(function(){
+    $('#playAgain').on('click', function(){
     //   newGame();
     });
-    $('#resetGame').click(function(){
-    //   initializeGame();
-    });   
+    $('#resetGame').on('click', function(){
+        window.location.href='start.html';
+    }); 
+   
   }
 
+  function showResults() {
+    $("#results").empty();
+    $("#answered").text();
+    $("#unanswered").text();
+    $("#correctAns").text();
+    $("#incorrectAns").text();
+    
+  }
+
+  
+    var isAnswered = false;
     var correctAnswers = 0;
     var incorrectAnswers = 0;
     var unanswered = 0;
     var timeLeft = 10;
+
 
     var randomQuestion = Math.floor(Math.random() * myQuestions.length);
     var optionsLength = (myQuestions[randomQuestion]).options.length;
@@ -159,7 +189,20 @@ function showButtons() {
     var answer = myQuestions[randomQuestion].answer;
     var correctAnswer = options[answer];
   
-  
+    function startQuiz() {
+        isAnswered = false;
+        correctAnswers = 0;
+        incorrectAnswers = 0;
+        unanswered = 0;
+        timeLeft = 10; 
+        
+    
+        showQuestion();
+        displayOptions();
+        selectOptions(); 
+        var display = $('#timeRemaining').text(' ' + timeLeft + ' Seconds');        
+        setTimer(timeLeft, display);
+      }
       
 $(document).ready(function(){
     
@@ -176,13 +219,7 @@ $(document).ready(function(){
      
     });
     
-    showQuestion();
-    displayOptions();
-    selectOptions();
-
-    
-    var display = $('#timeRemaining').text(' ' + timeLeft + ' Seconds');        
-        startTimer(timeLeft, display);
+   startQuiz();
     
     
 });
