@@ -92,9 +92,9 @@ var correctAnswer;
 
 function setBackgroundImage(myObject, imageUrl) {
    myObject.css({
-                "background-image": "url(" + imageUrl + ")",
-                 "background-position": "center"
-                });
+        "background-image": "url(" + imageUrl + ")",
+        "background-position": "center"
+    });
 }
 
 
@@ -117,8 +117,7 @@ function setTimer(duration, display) {
             $("#image").html('<div><img class="img-fluid" src="assets/images/time-is-up.gif" ></div>');   
             $("#unanswered").html(unanswered);
             showAnswer();
-            showButtons();
-            
+            showButtons();   
         }
     }, 1000);
     return timerId;
@@ -126,10 +125,8 @@ function setTimer(duration, display) {
 
 function stopTimer(interval) {
     clearInterval(interval);
-  }
-
-  
-
+}
+ 
 
 function showQuestion() { 
     $("#qNum").text(id);
@@ -145,8 +142,6 @@ function displayOptions() {
 }
 
 
-
-
 function showAnswer() {
     var ans = '<span class="h3 ml-3">' + correctAnswer + '</span>';
     $("#answer").html('<h6 class="alert alert-info border border-info">Correct Answer: ' + ans + '</h6>');
@@ -156,67 +151,70 @@ function showButtons() {
     //Give options to Play Again or Reset game  
     $('#playAgain').html('<button type="button" class="btn btn-warning btn-sm">' + ' CONTINUE ' + '</button>');
     $('#resetGame').html('<button type="button" class="btn btn-danger btn-sm">' + ' NEW GAME ' + '</button>');
-   
-  }
+}
 
-     
-  
-    function startQuiz() {
-        
-        //Initialize all variables
-        isAnswered = false;
-        correctAnswers = 0;
-        incorrectAnswers = 0;
-        unanswered = 0;
-        timeLeft = 10; 
-
-        $("#image").empty();
-        $("#message").empty();
-        $("#answer").empty();
-        
-
-        //Build start page 
-        showQuestion();
-        displayOptions();
-        
-        display = $('#timeRemaining').text(' ' + timeLeft + ' Seconds');
-        interval = setTimer(timeLeft, display);
-                
-       
-      }
-
-    function continueQuiz() {
-        timeLeft = 10; 
-        
-        $("#image").empty();
-        $("#message").empty();
-        $("#answer").empty();
-        
-
-        //Build start page 
-        randomQuestion = Math.floor(Math.random() * myQuestions.length);
+function getRandomQuestion() {
+    //Select a random question
+    randomQuestion = Math.floor(Math.random() * myQuestions.length);
     optionsLength = (myQuestions[randomQuestion]).options.length;
 
+    //Save keys and values of this random question to variables
     id =  myQuestions[randomQuestion].id;
     question =  myQuestions[randomQuestion].question;
     options = myQuestions[randomQuestion].options;
     answer = myQuestions[randomQuestion].answer;
     correctAnswer = options[answer];
-        showQuestion();
-        displayOptions();
-        
-        display = $('#timeRemaining').text(' ' + timeLeft + ' Seconds');
-        interval = setTimer(timeLeft, display);
-    }
+}
+     
+function startQuiz() {
+    
+    //Initialize all variables
+    isAnswered = false;
+    correctAnswers = 0;
+    incorrectAnswers = 0;
+    unanswered = 0;
+    timeLeft = 10; 
+
+    $("#image").empty();
+    $("#message").empty();
+    $("#answer").empty();
+    
+
+    //Build start page 
+    showQuestion();
+    displayOptions();
+    
+    display = $('#timeRemaining').text(' ' + timeLeft + ' Seconds');
+    interval = setTimer(timeLeft, display);           
+    
+}
+
+function continueQuiz() {
+    timeLeft = 10; 
+    
+    $("#image").empty();
+    $("#message").empty();
+    $("#answer").empty();
+    
+    getRandomQuestion();
+    
+    //Display the question and its options to select the answer
+    showQuestion();
+    displayOptions();
+    
+    //Display the timer and starts the coundown
+    display = $('#timeRemaining').text(' ' + timeLeft + ' Seconds');
+    interval = setTimer(timeLeft, display);
+}
 
       
 $(document).ready(function(){
-        
+    //Set an image as a background to the body   
     var body = $("body");
     var bg_picUrl = 'assets/images/bg-pic.jpg';
         setBackgroundImage(body, bg_picUrl);
          
-
+    //Add event listener for a click on the "#startbutton" button
     $("#startButton").on('click', function(){
         $(this).hide();
         $('#startPic').hide();
@@ -224,24 +222,20 @@ $(document).ready(function(){
      
     });
 
+    //Add event listener for a click on the "#playagain" button
     $('#playAgain').on('click', function(){
         $('button').hide();
         continueQuiz();
     });
+
+    //Add event listener for a click on the "#resetgame" button
     $('#resetGame').on('click', function(){
         window.location.href='index.html';  
     }); 
    
-    randomQuestion = Math.floor(Math.random() * myQuestions.length);
-    optionsLength = (myQuestions[randomQuestion]).options.length;
+    getRandomQuestion();
 
-    id =  myQuestions[randomQuestion].id;
-    question =  myQuestions[randomQuestion].question;
-    options = myQuestions[randomQuestion].options;
-    answer = myQuestions[randomQuestion].answer;
-    correctAnswer = options[answer];
-
-   startQuiz();
+    startQuiz();
 
    $('#mySelect').change(function() {
     selected = true;
@@ -249,22 +243,22 @@ $(document).ready(function(){
     
     if (selectedOption === answer) {
         isAnswered = true;
-        answered++;
+        // answered++;
         correctAnswers++;
         stopTimer(interval);
         $("#image").html('<div class="alert alert-info"><h4>You Got It Right! Congrats!</h4></div>'); 
-        $("#answered").html(answered);
+        // $("#answered").html(answered);
         $("#correctAnswers").html(correctAnswers);
         showButtons();
                           
     }
     else if (selectedOption !== answer) {
         isAnswered = true;
-        answered++;
+        // answered++;
         incorrectAnswers++;
         stopTimer(interval);
         $("#image").html('<div class="alert alert-danger"><h4>You Got It Wrong!</h4></div>');
-        $("#answered").html(answered);
+        // $("#answered").html(answered);
         $("#incorrectAnswers").html(incorrectAnswers);
         showAnswer();
         showButtons();  
@@ -272,7 +266,8 @@ $(document).ready(function(){
     else {
         selected = false;
     }
-       
-});
+      answered = correctAnswers + incorrectAnswers;
+      $("#answered").html(answered); 
+    });
       
 });
