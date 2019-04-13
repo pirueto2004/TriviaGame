@@ -175,16 +175,12 @@ function showAnswer() {
 function showButtons() {
     //Give options to Play Again or Reset game  
     $('#playAgain').html('<button type="button" class="btn btn-warning btn-sm">' + ' CONTINUE ' + '</button>');
-    $('#resetGame').html('<button type="button" class="btn btn-danger btn-sm">' + ' EXIT GAME ' + '</button>');
+    $('#resetGame').html('<button type="button" class="btn btn-danger btn-sm">' + ' NEW GAME ' + '</button>');
     $('#playAgain').on('click', function(){
         window.location.href='start.html';
     });
     $('#resetGame').on('click', function(){
-        var quit = prompt("Quit Game?");
-        if (quit) {
-            alert("Game aborted!");
-            return false;
-        }
+        window.location.href='index.html';  
     }); 
    
   }
