@@ -71,6 +71,10 @@ h1 {
     width: 100%;
   }
 
+  #image {
+    max-width: 250px;
+    margin-right: 50px;
+  }
   /* #startBtn {
     position: relative;
     top: 200px; 

@@ -7,10 +7,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+
     <!-- Contextual CSS -->
     <link rel="stylesheet" href="assets/css/style.css" />
     <!-- <link rel="stylesheet" href="assets/css/reset.css" /> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
     <!-- Javascript file -->
     <script type="text/javascript" src="assets/javascript/app.js" ></script>
     
@@ -38,10 +41,10 @@
                     </div>
                   </div>
               </div>
-              <div class="row justify-content-center">
-                  <div class="col-4 my-2" id="image">
+              <div class="row my-2 justify-content-between align-items-center">
+                  <div class="col-4 " id="options">
                       <div class="form">
-                          <div class="form-group" id="options">
+                          <div class="form-group" >
                               <label for="options">Select your answer ...</label>
                               <select size="4" class="form-control" id="mySelect">
                                  
@@ -49,6 +52,35 @@
                           </div>
                       </div>
                   </div>
+
+                  <div class="col-4" id="image"></div>
+
+                  <div class="col-4 " > 
+                      <table class="table table-sm table-bordered table-striped text-left " id="results">
+                          <thead>
+                           
+                          </thead>
+                          <tbody>
+                            <tr id="1">
+                              <th scope="row">Answered:</th>
+                              <td id="answered" contenteditable="true">0</td>  
+                            </tr>
+                            <tr id="2">
+                              <th scope="row">Unanswered:</th>
+                              <td id="unanswered" contenteditable="true">0</td>  
+                            </tr>
+                            <tr id="3">
+                              <th scope="row">Correct Answers:</th>
+                              <td id="correctAnswers" contenteditable="true">0</td> 
+                            </tr>
+                            <tr id="4">
+                                <th scope="row">Incorrect Answers:</th>
+                                <td id="incorrectAnswers" contenteditable="true">0</td> 
+                              </tr>
+                          </tbody>
+                        </table>
+                      
+                      </div>
               </div>
               
               <div class="row my-1 justify-content-center">
@@ -58,7 +90,7 @@
               <div class="row justify-content-center">
                   <div class="col-8" id="answer"></div>   
               </div>
-              <div class="row my-1 align-items-center justify-content-center">
+              <div class="row my-1 align-items-center justify-content-center" id="buttons">
                 <div class="col-12 col-md-3 mb-0" >
                     <div class="text-center" id="playAgain"></div> 
                 </div>
@@ -67,14 +99,7 @@
                 </div>
             </div>
               <div class="row justify-content-center" >
-                <div class="col-12 col-md-4  p-2" id="results">
-                  <div class="row">
-                    <div class="col-12 col-md-4  p-2" id="answered"></div>
-                    <div class="col-12 col-md-4  p-2" id="unanswered"></div>
-                    <div class="col-12 col-md-4  p-2" id="correctAns"></div>
-                    <div class="col-12 col-md-4  p-2" id="incorrectAns"></div>
-                  </div>
-                </div>
+                
               </div>
           </div>
       </div>  
