@@ -63,7 +63,51 @@ const myQuestions = [
                 d: "Iron man"
                 },
             answer: 'c'
-            }
+        },
+
+        {id: 7,
+            question: 'Which German city is famous for the perfume it produces?',
+            options: {
+                a: "Berlin",
+                b: "Cologne",
+                c: "Hamburg",
+                d: "Leipzig"
+                },
+            answer: 'b'
+        },
+
+        {id: 8,
+            question: 'When did the First World War start?',
+            options: {
+                a: "1921",
+                b: "1940",
+                c: "1945",
+                d: "1914"
+                },
+            answer: 'd'
+        },
+
+        {id: 9,
+            question: 'Who painted the Mona Lisa?',
+            options: {
+                a: "Leonardo Da Vinci",
+                b: "Michelangelo",
+                c: "Vincent Van Gogh",
+                d: "Sandro Boticelli"
+                },
+            answer: 'a'
+        },
+
+        {id: 10,
+            question: 'What’s the name of the famous big clock in London?',
+            options: {
+                a: "Westminster Abbey",
+                b: "Tower of London",
+                c: "Big Ben",
+                d: "Clock Tower"
+                },
+            answer: 'c'
+        }
 
 
 ];
