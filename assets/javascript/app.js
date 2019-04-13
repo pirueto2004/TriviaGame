@@ -290,7 +290,8 @@ $(document).ready(function(){
         // answered++;
         correctAnswers++;
         stopTimer(interval);
-        $("#image").html('<div class="alert alert-info"><h4>You Got It Right! Congrats!</h4></div>'); 
+        $("#image").html('<div><img class="img-fluid" src="assets/images/you-got-it.gif" ></div>');
+        // $("#image").html('<div class="alert alert-info"><h4>You Got It Right! Congrats!</h4></div>'); 
         // $("#answered").html(answered);
         $("#correctAnswers").html(correctAnswers);
         showButtons();
@@ -301,7 +302,8 @@ $(document).ready(function(){
         // answered++;
         incorrectAnswers++;
         stopTimer(interval);
-        $("#image").html('<div class="alert alert-danger"><h4>You Got It Wrong!</h4></div>');
+        $("#image").html('<div><img class="img-fluid" src="assets/images/wrong.gif" ></div>');
+        // $("#image").html('<div class="alert alert-danger"><h4>You Got It Wrong!</h4></div>');
         // $("#answered").html(answered);
         $("#incorrectAnswers").html(incorrectAnswers);
         showAnswer();
